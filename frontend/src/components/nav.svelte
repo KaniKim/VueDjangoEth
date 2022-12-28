@@ -3,12 +3,11 @@
     let open = false;
 
     function setup() {
-        open = !open;
+      open = !open;
     }
 </script>
 <Bar bind:open class="absolute"></Bar>
 <div class="relative flex min-h-screen">
-
     <div class="flex-1">
         <div class="flex bg-white shadow px-2 py-4">
             <button on:click={setup} class="text-cyan-600 font-extrabold">
