@@ -1,3 +1,6 @@
+import datetime
+import uuid
+
 from user.models.user import User as UserModel
 from user.data.user import User as UserData
 
@@ -33,10 +36,19 @@ class UserRepository:
             return None
         return self.to_data(result)
 
-    def create_user(self, user_data: UserData) -> bool:
+    def create_user(self, email: str, password: str, name: str) -> bool:
+        user_data = UserData(
+            id=str(uuid.uuid4()),
+            email=email,
+            password=password,
+            name=name,
+            is_active=False,
+            is_superuser=False,
+            created_at=datetime.datetime.now(),
+            updated_at=datetime.datetime.now()
+        )
         user_model = self.to_django_model(user_data=user_data)
         if user_model.save():
             return True
         return False
-
 
