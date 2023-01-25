@@ -55,3 +55,20 @@ class UserService:
             return None
 
         return True if result_address == True or result_email else False
+
+    def login_user(self, ethereum_address: str, email: str, password: str) -> bool | None:
+        result = None
+
+        if email and ethereum_address:
+            result = self.user_repo.get_user_by_email_and_address(email=email, ethereum_address=ethereum_address)
+
+        if email and not ethereum_address:
+            result = self.user_repo.get_user_by_email(email=email)
+
+        if not email and ethereum_address:
+            result = self.user_repo.get_user_by_address(ethereum_address=ethereum_address)
+
+        if not result:
+            return None
+
+        return self.user_repo.check_password(email=email, ethereum_address=ethereum_address, password=password)

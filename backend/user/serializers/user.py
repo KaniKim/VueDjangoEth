@@ -13,3 +13,4 @@ class UserSerializer(Serializer): # noqa
     updated_at = DateTimeField(read_only=True)
     login_at = DateTimeField(read_only=True)
 
+

@@ -134,3 +134,22 @@ class UserRepository:
         finally:
             return True
 
+    # noinspection PyMethodMayBeStatic
+    def check_password(self, email: str, ethereum_address: str, password: str) -> bool | None:
+
+        result = None
+
+        if email and ethereum_address:
+            result = UserModel.objects.filter(Q(email=email) and Q(ethereum_address=ethereum_address)).first()
+
+        if email and not ethereum_address:
+            result = UserModel.objects.filter(email=email).first()
+
+        if not email and ethereum_address:
+           result = UserModel.objects.filter(ethereum_address=ethereum_address).first()
+
+        if not result:
+            return None
+
+        return result.password == password
+

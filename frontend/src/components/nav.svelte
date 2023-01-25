@@ -6,6 +6,7 @@
       open = !open;
     }
 </script>
+
 <Bar bind:open class="absolute"></Bar>
 <div class="relative flex min-h-screen">
     <div class="flex-1">
