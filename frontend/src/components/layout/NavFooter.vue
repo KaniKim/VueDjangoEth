@@ -1,6 +1,5 @@
 <template>
-  <v-app>
-    <v-footer app bottom fixed padless class="bg-grey-lighten-1">
+    <v-footer app bottom fixed padless class="bg-black">
       <v-row justify="center" no-gutters>
         <v-btn
             v-for="link in links"
@@ -17,7 +16,6 @@
         </v-col>
       </v-row>
     </v-footer>
-  </v-app>
 </template>
 <script>
 export default {
