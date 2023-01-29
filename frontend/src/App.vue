@@ -1,14 +1,13 @@
 <template>
   <v-app :theme="this.theme">
     <NavBar v-model:theme="theme" @onclick="this.theme = $event"></NavBar>
-    <TheWelcome></TheWelcome>
+    <RouterView v-model:theme="theme" @onclick="this.theme = $event"></RouterView>
     <NavFooter></NavFooter>
   </v-app>
 </template>
 <script>
 import NavBar from "@/components/layout/NavBar.vue";
 import NavFooter from "@/components/layout/NavFooter.vue";
-import TheWelcome from "@/components/TheWelcome.vue";
 
 export default {
   data() {
@@ -17,7 +16,6 @@ export default {
     };
   },
   components: {
-    TheWelcome,
     NavBar,
     NavFooter
   }

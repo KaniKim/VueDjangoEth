@@ -14,6 +14,11 @@ const vuetify = createVuetify({
   icons: {
     iconfont: "mdi",
   },
+  theme: {
+    themes: {
+    
+    }
+  },
   components,
   directives,
 });
