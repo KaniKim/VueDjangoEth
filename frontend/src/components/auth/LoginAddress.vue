@@ -20,6 +20,13 @@
                     type="text"
                 ></v-text-field>
                 <v-text-field
+                    v-model="address"
+                    label="Ethereum Address"
+                    name="address"
+                    style="max-width: 80%;"
+                    type="text"
+                ></v-text-field>
+                <v-text-field
                     v-model="password"
                     label="Password"
                     name="password"
@@ -31,11 +38,11 @@
           </v-form>
           <v-card-actions>
             <v-btn
-                :loading="loading"
                 block
                 color="gray"
                 form="check-login-form"
                 size="large"
+                :onclick="onSubmit"
                 type="submit"
                 variant="elevated"
             >
@@ -61,6 +68,9 @@
 </template>
 
 <script>
+import {loginUser} from "@/api/api";
+import store from "@/api/store";
+
 export default {
   props: {
     theme: {
@@ -71,8 +81,27 @@ export default {
   name: "LoginAddress",
   data: () => ({
     email: null,
+    address: null,
     password: null,
   }),
-  methods: {}
+  methods: {
+    onSubmit() {
+      const userData = {
+        email: this.email,
+        ethereum_address: this.address,
+        password: this.password,
+      };
+      loginUser(userData)
+        .then(res => {
+          console.log(res);
+          store.state.accessToken = res.data.accessToken;
+          store.state.refreshToken = res.data.refreshToken;
+          store.state.userName = res.data.user;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }
 };
 </script>

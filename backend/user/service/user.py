@@ -5,10 +5,14 @@ from user.repository.user import UserRepository
 class UserService:
     user_repo = UserRepository()
     def create_user(self, password: str, email: str, name: str, ethereum_address: str) -> bool:
+        if self.user_repo.get_user_by_email_and_address(email=email, ethereum_address=ethereum_address):
+            return False
+
         hashed_password = bcrypt.hashpw(
             password=password.encode("utf-8"),
             salt=bcrypt.gensalt()
         ).decode("utf-8")
+
 
         if self.user_repo.create_user(email=email, name=name, password=hashed_password, ethereum_address=ethereum_address):
             return True

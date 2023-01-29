@@ -6,6 +6,11 @@ import vuetify from "vite-plugin-vuetify";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    proxy: {
+      "/api": process.env.VITE_API_URL,
+    }
+  },
   plugins: [
     vue(),
     vuetify({ autoImport: true })

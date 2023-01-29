@@ -1,4 +1,4 @@
-import { createApp } from "vue";
+import {createApp} from "vue";
 import App from "./App.vue";
 import "@mdi/font/css/materialdesignicons.css";
 
@@ -13,11 +13,6 @@ const app = createApp(App);
 const vuetify = createVuetify({
   icons: {
     iconfont: "mdi",
-  },
-  theme: {
-    themes: {
-    
-    }
   },
   components,
   directives,

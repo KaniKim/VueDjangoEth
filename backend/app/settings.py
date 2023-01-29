@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #third party
+    'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
 	'rest_framework_simplejwt.token_blacklist',
@@ -56,6 +57,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -114,6 +116,10 @@ DATABASES = {
         'PORT': os.environ.get("DB_PORT"),
     }
 }
+
+CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:5173', 'http://localhost:5173']
+CORS_ALLOW_CREDENTIALS = True
+ALLOWED_HOSTS = ['*']
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

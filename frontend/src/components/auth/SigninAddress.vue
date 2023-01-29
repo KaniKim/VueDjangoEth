@@ -26,6 +26,13 @@
                     type="text"
                 ></v-text-field>
                 <v-text-field
+                    v-model="nickname"
+                    label="NickName"
+                    name="nickname"
+                    style="max-width: 80%;"
+                    type="text"
+                ></v-text-field>
+                <v-text-field
                     v-model="password"
                     label="Password"
                     name="password"
@@ -38,6 +45,7 @@
           <v-card-actions>
             <v-btn
                 block
+                :onclick="onSubmit"
                 color="gray"
                 form="check-login-form"
                 size="large"
@@ -54,6 +62,8 @@
 </template>
 <script>
 
+import {registerUser} from "@/api/api";
+
 export default {
   props: {
     theme: {
@@ -66,10 +76,26 @@ export default {
     email: null,
     password: null,
     address: null,
+    nickname: null,
     isError: false,
     errMsg: "",
   }),
   methods: {
+    onSubmit() {
+      const userData = {
+        email: this.email,
+        name: this.nickname,
+        ethereum_address: this.address,
+        password: this.password,
+      };
+      registerUser(userData)
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   }
 };
 </script>

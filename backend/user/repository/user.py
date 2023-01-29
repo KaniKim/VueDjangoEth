@@ -28,6 +28,7 @@ class UserRepository:
             id=user_model.id,
             name=user_model.name,
             email=user_model.email,
+            password=user_model.password,
             is_staff=user_model.is_staff,
             is_active=user_model.is_active,
             is_superuser=user_model.is_superuser,
