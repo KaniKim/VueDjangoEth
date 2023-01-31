@@ -10,7 +10,6 @@ const Axios = axios.create({
 });
 
 Axios.interceptors.request.use((config) => {
-  config.headers.Authorization = store.state.accessToken;
   return config;
 }, (error) => {
   return Promise.reject(error);

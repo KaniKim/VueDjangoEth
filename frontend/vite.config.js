@@ -8,12 +8,13 @@ import vuetify from "vite-plugin-vuetify";
 export default defineConfig({
   server: {
     proxy: {
-      "/api": process.env.VITE_API_URL,
+      "/api": "http://localhost:8000",
     }
   },
   plugins: [
-    vue(),
-    vuetify({ autoImport: true })
+    vue({
+    }),
+    vuetify()
   ],
   resolve: {
     alias: {

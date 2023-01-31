@@ -45,7 +45,7 @@
           <v-card-actions>
             <v-btn
                 block
-                :onclick="onSubmit"
+                v-on:click.meta.prevent="onSubmit"
                 color="gray"
                 form="check-login-form"
                 size="large"
